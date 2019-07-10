@@ -12,10 +12,11 @@ validator                 // validate object against schema (easily switch betwe
     L student-schema.js   // object schema dependens on specific library
     L teacher-schema.js
   L validatejs            // per above but different library
+    L index.js
     L student-schema.js
     L teacher-schema.js
 ==========================================================================================================
-models                    // create new entity by validating payload and new returning read only object 
+models                    // create new entity by validating payload and returning new read only object 
   L student
     L index.js            // dependency inject schema/ validation library (from validator above)
     L student.js          // simple model takes info, validates and returns read only object
