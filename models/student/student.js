@@ -1,11 +1,11 @@
-let buildMakeStudent = function({schema}) {
+let buildMakeStudent = function(studentValidator) {
   return ({
     name,
     age,
     grade,
     prefect = false
   } = {}) => {
-    const {error} = schema.validate({name, age, grade, prefect})
+    let {error} = studentValidator({name, age, grade, prefect})
     if (error) throw new Error(error)
 
     return {

@@ -1,9 +1,7 @@
 let buildMakeStudent = require('./student')
-let studentSchema = require('./student-schema')
+let {studentValidator} = require('../../validator')
 
-let makeStudent = buildMakeStudent({
-  schema: studentSchema
-})
+let makeStudent = buildMakeStudent(studentValidator)
 
 module.exports = makeStudent
 
