@@ -12,6 +12,12 @@ let findStudent = (prop, val) => {
   return Promise.resolve(serialize(student))
 }
 
+let findStudentsBy = (prop, val) => {
+  let student = STUDENTS.filter(student => student[prop] == val)
+  return Promise.resolve(serialize(student))
+}
+
+
 let addStudent = (studentInfo) => {
   let student = makeStudent(studentInfo)
   let newStudent = {
@@ -25,10 +31,34 @@ let addStudent = (studentInfo) => {
   return findStudent('serial', newStudent.serial)
 }
 
+let deleteStudent = (id) => {
+  return findStudent({id})
+    .then(student => {
+      if (student.id === id) {
+        STUDENTS = STUDENTS.filter(student => student.serial !== id)
+        return {
+          id,
+          status: 'success'
+        }
+      }
+      return {
+        status: 'fail'
+      }
+    })
+}
+
+let dropAll = () => {
+  STUDENTS = [];
+  return STUDENTS;
+}
+
 module.exports = {
   listStudents,
   findStudent,
-  addStudent
+  findStudentsBy,
+  addStudent,
+  deleteStudent,
+  dropAll
 }
 
 // let students = listStudents() //?

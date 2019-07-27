@@ -1,11 +1,11 @@
 let buildMakeTeacher = require('./teacher')
-let {
-  teacherValidator
-} = require('../../validator')
+let teacherSchema = require('./teacher-schema')
+let teacherValidator = require('../validator')(teacherSchema)
+// let {
+//   teacherValidator
+// } = require('../../validator')
 
 let makeTeacher = buildMakeTeacher(teacherValidator)
 
 module.exports = makeTeacher
 
-// let robert = makeTeacher({name: 'robert frost', subject: 12})
-// robert //?

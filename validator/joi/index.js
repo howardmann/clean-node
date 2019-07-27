@@ -5,7 +5,7 @@ let teacherSchema = require('./teacher-schema')
 let JoiValidator = (payload, schema) => {
   let {error} = Joi.validate(payload, schema, {abortEarly: false})
   if (error) {
-    let message = error.details.map(el => el.message)
+    let message = error.details.map(el => el.message).join('\n')
     return {
       error: message
     }

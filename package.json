@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./drivers/webserver/server.js",
-    "dev": "nodemon ./drivers/webserver/server.js"
+    "dev": "nodemon ./drivers/webserver/server.js",
+    "test": "mocha './**/*.test.js'"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,9 @@
     "joi": "^14.3.1",
     "validate.js": "^0.13.1",
     "yargs-parser": "^13.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
   }
 }
