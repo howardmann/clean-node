@@ -42,8 +42,6 @@ describe('validators', () => {
 
       expect(input).to.eql(actual)
     })
-
-
   })
 
   describe('teacherValidator', () => {

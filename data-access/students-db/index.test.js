@@ -67,6 +67,17 @@ describe('studentsDb', () => {
     expect(input).to.eql(actual)
   })
 
+  it('throws error if inserts a student with invalid payload', () => {
+    let invalid = {
+      name: 'bill',
+      grade: 'INSERT POISON INTO THIS'
+    }
+    expect(() => {
+      studentsDb.addStudent(invalid)
+    })
+    .to.throw('grade must be a number')
+  })
+
   it('deletes a student', async () => {
     let validInput = await studentsDb.deleteStudent(1)
     let validActual = {
