@@ -3,7 +3,7 @@ let expect = chai.expect;
 let makeTeacher = require('./index')
 
 describe('makeTeacher', () => {
-  it('validates name (string:required), grade (number), age (number) and prefect (boolean)', () => {
+  it('throws error if invalid payload', () => {
     let errorMessage = [
       'must have name as string',
       'subject must be a string',
