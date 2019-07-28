@@ -5,30 +5,30 @@ My version of a basic clean node architecture.
 Directory:
 ```bash
 ==========================================================================================================
-validator                 // validate object against schema (easily switch between libraries with consistent external API)
-  L index.js              // root, access all validators (e.g. studentValidator, teacherValidator) depdendant on validation library
-  L joi                   // different validation libraries
-    L index.js            // wrapper to expose consistent validator API (i.e. true if valid otherwise { error: [message]} )
-    L student-schema.js   // object schema dependens on specific library
-    L teacher-schema.js
-  L validatejs            // per above but different library
-    L index.js
-    L student-schema.js
-    L teacher-schema.js
-==========================================================================================================
 models                    // create new entity by validating payload and returning new read only object 
   L student
-    L index.js            // dependency inject schema/ validation library (from validator above)
+    L index.js            // dependency inject schema/ validation library
+    L index.test.js       // tests makeStudent()
     L student.js          // simple model takes info, validates and returns read only object
+    L student-schema.js   // student validation schema
   L teacher
     L index.js
     L teacher.js
+    L teacher-schema.js
+  L validator             // wrapper around JOI validation library
+    L index.js            // consistent API if ever to switch out a new validation library
+    L index.test.js       // tests for validation schema for all models
 
 db                        // db connection and adapter
   L memory                // in memory JSON
     L students.js         
     L teachers.js         
-  L mongodb               // TODO: using mongoose connection
+  L mongodb               // mongodb alternative
+    L connection.js       // connection library
+    L seeds               // seed library
+      L students-seeds.js // async seed students db
+    L models
+      L student.js        // models specific to mongodb. this is different to our business logic models which handle tests and validation
 ============================================================================================================
 data-access               // think of it as our internal ORM (logic for our use-cases lies here)
   L students-db           
@@ -36,7 +36,9 @@ data-access               // think of it as our internal ORM (logic for our use-
     L memory              // in memory
       L index.js          // expose the memory implementation of findStudent, listStudents, addStudents
       L serializer.js     // serializes to DB specific properties (e.g. serial > id, year > grade)
-    L mongodb             // TODO: Illustrative
+    L mongodb             // mongodb ORM
+      L index.js          // uses mongoose implementation of findStudent, listStudents, dropAll etc.
+      L serializer.js     // serializes _id to id
     L postgresql          // TODO: Illustrative
     L airtable            // TODO: Illustrative
   L teachers-db           // per students-db above
