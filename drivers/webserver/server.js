@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const routes = require('./routes')
+const config = require('../../config')
 
 // bodyparser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,7 +35,7 @@ app.use(function (req, res) {
 });
 
 
-const PORT = 3000
+const PORT = config.PORT || 3000
 
 app.listen(PORT, () => {
   console.log(`Listening on PORT: ${PORT}`);
