@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./drivers/webserver/server.js",
     "dev": "nodemon ./drivers/webserver/server.js",
-    "test": "mocha './**/*.test.js'"
+    "test": "mocha './**/*.test.js' --exit"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "joi": "^14.3.1",
+    "mongoose": "^5.6.7",
     "validate.js": "^0.13.1",
     "yargs-parser": "^13.1.1"
   },

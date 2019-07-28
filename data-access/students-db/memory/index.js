@@ -34,8 +34,8 @@ let addStudent = (studentInfo) => {
 let deleteStudent = (id) => {
   return findStudent({id})
     .then(student => {
-      if (student.id === id) {
-        STUDENTS = STUDENTS.filter(student => student.serial !== id)
+      if (student.id == id) {
+        STUDENTS = STUDENTS.filter(student => student.serial != id)
         return {
           id,
           status: 'success'

@@ -36,11 +36,13 @@ describe('studentsDb', () => {
   })
 
   it('find single student by id', async () => {
-    let id = 1
+    let students = await studentsDb.listStudents()
+    let id = students[0].id
+
     let student = await studentsDb.findStudent({id})
     let input = student.id
     let actual = id
-    expect(input).to.equal(actual)
+    expect(input).to.eql(actual)
   })
 
   it('finds all students by property', async () => {
@@ -79,26 +81,25 @@ describe('studentsDb', () => {
   })
 
   it('deletes a student', async () => {
-    let validInput = await studentsDb.deleteStudent(1)
+    let students = await studentsDb.listStudents()
+    let id = students[0].id.toString()
+    let validInput = await studentsDb.deleteStudent(id)
     let validActual = {
       status: 'success',
-      id: 1
+      id
     }
-
     expect(validInput).to.eql(validActual)
 
-    let students = await studentsDb.listStudents()
-    let inputLength = students.length
+    let newStudents = await studentsDb.listStudents()
+    let inputLength = newStudents.length
     let actualLength = 1
     expect(inputLength).to.equal(actualLength)
 
-    let invalidInput = await studentsDb.deleteStudent(4)
+    let invalidInput = await studentsDb.deleteStudent(42)
     let invalidActual = {
       status: 'fail'
     }
-    expect(invalidInput).to.eql(invalidActual)
-
-    
+    expect(invalidInput).to.eql(invalidActual)    
   })
 
 })
