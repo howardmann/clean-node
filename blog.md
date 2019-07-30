@@ -149,8 +149,28 @@ let makeStudent = buildMakeStudent(studentValidator)
 module.exports = makeStudent
 ```
 
-We should write two sets of unit tests for our model. First testing the validation library for valid vs invalid payloads and relevant error messages. And second testing the creation and read only of the model entity.
+Write two sets of unit tests for our model. First testing the validation library for valid vs invalid payloads and relevant error messages. And second testing the creation and read only of the model entity.
 
+```javascript
+// models/validator/index.test.js
+studentValidator
+  [] validates name:string:required, grade:number, age:number, prefect:boolean 
+  [] returns error messages if invalid
+
+teacherValidator
+  [] validates name:string:required, subject:string, tenure:boolean
+  [] returns error messages if invalid
+```
+
+```javascript
+// models/student/index.test.js
+makeStudent
+  [] throws error if invalid payload
+  [] must have name
+  [] can have grade
+  [] can have age
+  [] sets prefect to false by default
+```
 ### Data-Access
 The data-access layer is one of the most important. We should feel confident to easily replace DBs.
 
