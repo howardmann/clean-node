@@ -60,13 +60,3 @@ module.exports = {
   deleteStudent,
   dropAll
 }
-
-// let students = listStudents() //?
-// let howie = findStudent('id', 1) //?
-// addStudent({
-//   name: 12,
-//   age: 21,
-//   grade: 1
-// }) //?
-
-// listStudents() //?
