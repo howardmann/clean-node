@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 
 // Use ES6 Promises for mongoose
 mongoose.Promise = global.Promise;
-
+mongoose.set('useNewUrlParser', true);
 // Set environment variables
 let env = process.env.NODE_ENV;
 
@@ -15,7 +15,6 @@ if (env === 'production') {
 } else {
   mongoose.connect('mongodb://localhost:27017/clean_node'), {
     useMongoClient: true,
-    useNewUrlParser: true
   };
 }
 

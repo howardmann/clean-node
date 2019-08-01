@@ -13,10 +13,10 @@ let findStudent = (prop, val) => {
 }
 
 let findStudentsBy = (prop, val) => {
+  if (prop === 'grade') {prop = 'year'}
   let student = STUDENTS.filter(student => student[prop] == val)
   return Promise.resolve(serialize(student))
 }
-
 
 let addStudent = (studentInfo) => {
   let student = makeStudent(studentInfo)

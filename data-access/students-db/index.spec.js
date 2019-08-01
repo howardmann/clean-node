@@ -39,14 +39,14 @@ describe('studentsDb', () => {
     let students = await studentsDb.listStudents()
     let id = students[0].id
 
-    let student = await studentsDb.findStudent({id})
+    let student = await studentsDb.findStudent('id', id)
     let input = student.id
     let actual = id
     expect(input).to.eql(actual)
   })
 
   it('finds all students by property', async () => {
-    let students = await studentsDb.findStudentsBy({grade: 3})
+    let students = await studentsDb.findStudentsBy('grade', 3)
     let input = students.map(el => el.name)
     let actual = ['howie', 'bill']
     expect(input).to.eql(actual)
