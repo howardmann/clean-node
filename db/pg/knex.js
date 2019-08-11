@@ -1,4 +1,6 @@
-var environment = 'development';
-var config = require('../../knexfile')[environment];
+let config = require('../../config')
 
-module.exports = require('knex')(config);
+var environment = config.NODE_ENV || 'development';
+var knexConfig = require('../../knexfile')[environment];
+
+module.exports = require('knex')(knexConfig);

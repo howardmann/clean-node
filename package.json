@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./drivers/webserver/server.js",
+    "start": "NODE_ENV=production node ./drivers/webserver/server.js",
     "dev": "nodemon ./drivers/webserver/server.js",
     "test": "mocha './**/*.spec.js' --exit"
   },
