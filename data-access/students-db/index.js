@@ -6,9 +6,9 @@ let {
   deleteStudent,
   dropAll
 } 
-// = require('./memory/index') // switch out db as required
+ = require('./memory/index') // switch out db as required
 // = require('./mongod/index')
-= require('./pg/index')
+//= require('./pg/index')
 
 
 let studentsDb = {
